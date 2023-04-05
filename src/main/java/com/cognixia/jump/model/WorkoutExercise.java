@@ -6,6 +6,7 @@ import javax.persistence.Column;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.validation.constraints.Min;
 
 public class WorkoutExercise implements Serializable{
     
@@ -19,6 +20,7 @@ public class WorkoutExercise implements Serializable{
     private UserWorkout workoutId;
 
     @Column
+    @Min(0)
     private Integer reps;
 
     @Column
