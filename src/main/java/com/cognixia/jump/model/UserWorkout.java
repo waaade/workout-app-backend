@@ -17,6 +17,8 @@ import javax.persistence.OneToMany;
 @Entity
 public class UserWorkout implements Serializable {
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @OneToMany(mappedBy = "userWorkout", cascade = CascadeType.ALL, fetch = FetchType.LAZY)

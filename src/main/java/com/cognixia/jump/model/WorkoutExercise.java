@@ -10,6 +10,8 @@ import javax.validation.constraints.Min;
 
 public class WorkoutExercise implements Serializable{
     
+    private static final long serialVersionUID = 1L;
+    
     @Id
     @ManyToOne
     @JoinColumn(name = "exercise_id")
