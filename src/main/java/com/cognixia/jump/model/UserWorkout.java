@@ -21,11 +21,10 @@ public class UserWorkout implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(mappedBy = "userWorkout", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Integer Workoutid;
 
     @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", referencedColumnName = "id")
     private User userId;
 
     @Column

@@ -25,7 +25,6 @@ public class User implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private Integer id;
     
     @Column(nullable = false)
@@ -55,7 +54,7 @@ public class User implements Serializable {
     public void setId(Integer id) {
         this.id = id;
     }
-    
+
     public Role getRole() {
         return this.role;
     }
