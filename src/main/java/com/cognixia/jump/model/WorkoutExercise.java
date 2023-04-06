@@ -3,6 +3,7 @@ package com.cognixia.jump.model;
 import java.io.Serializable;
 
 import javax.persistence.Column;
+import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -10,6 +11,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.validation.constraints.Min;
 
+@Entity
 public class WorkoutExercise implements Serializable{
     
     private static final long serialVersionUID = 1L;
@@ -19,7 +21,7 @@ public class WorkoutExercise implements Serializable{
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "userWorkout_id", referencedColumnName = "id")
+    @JoinColumn(name = "userworkout_id", referencedColumnName = "id")
     private UserWorkout workoutId;
 
     @ManyToOne
@@ -38,12 +40,13 @@ public class WorkoutExercise implements Serializable{
     }
 
 
-    public Integer getExerciseId() {
+
+    public Integer getId() {
         return this.id;
     }
 
-    public void setExerciseId(Integer ExerciseId) {
-        this.id = ExerciseId;
+    public void setId(Integer id) {
+        this.id = id;
     }
 
     public UserWorkout getWorkoutId() {
@@ -52,6 +55,14 @@ public class WorkoutExercise implements Serializable{
 
     public void setWorkoutId(UserWorkout workoutId) {
         this.workoutId = workoutId;
+    }
+
+    public Exercise getExerciseId() {
+        return this.exerciseId;
+    }
+
+    public void setExerciseId(Exercise exerciseId) {
+        this.exerciseId = exerciseId;
     }
 
     public Integer getReps() {
@@ -73,11 +84,13 @@ public class WorkoutExercise implements Serializable{
     @Override
     public String toString() {
         return "{" +
-            " ExerciseId='" + getExerciseId() + "'" +
+            " id='" + getId() + "'" +
             ", workoutId='" + getWorkoutId() + "'" +
+            ", exerciseId='" + getExerciseId() + "'" +
             ", reps='" + getReps() + "'" +
             ", weight='" + getWeight() + "'" +
             "}";
     }
+   
     
 }

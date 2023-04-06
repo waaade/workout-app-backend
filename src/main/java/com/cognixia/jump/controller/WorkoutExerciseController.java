@@ -14,7 +14,7 @@ import com.cognixia.jump.repository.WorkoutExerciseRepository;
 @RequestMapping("/api")
 public class WorkoutExerciseController {
 
-    @Autowired
+@Autowired
 WorkoutExerciseRepository workoutExerciseRepo;
 
 @GetMapping("/workoutExercises")
@@ -40,7 +40,7 @@ public ResponseEntity<String> updateWorkoutExercise(@PathVariable Integer id,
 	if (existingWorkoutExercise == null) {
 		return ResponseEntity.notFound().build();
 	}
-	workoutExercise.setExerciseId(id);
+	workoutExercise.setId(id);
 	workoutExerciseRepo.save(workoutExercise);
 	return ResponseEntity.status(HttpStatus.OK).build();
 }
