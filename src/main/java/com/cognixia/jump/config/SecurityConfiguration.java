@@ -10,6 +10,7 @@ import org.springframework.security.config.annotation.authentication.configurati
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.http.SessionCreationPolicy;
 import org.springframework.security.core.userdetails.UserDetailsService;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.NoOpPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
@@ -36,9 +37,9 @@ public class SecurityConfiguration {
 
         http.csrf().disable()
             .authorizeRequests()
-            // .antMatchers("/authenticate").permitAll()
+            .antMatchers("/authenticate").permitAll()
             // .antMatchers("/api/admin").hasRole("ADMIN")
-            // .antMatchers(HttpMethod.POST, "/api/user").permitAll()
+            .antMatchers(HttpMethod.POST, "/api/users").permitAll()
             // .antMatchers(HttpMethod.GET, "api/user/**").hasRole("ADMIN")
             .antMatchers("/api/all").permitAll()
             .anyRequest().authenticated()
@@ -46,7 +47,7 @@ public class SecurityConfiguration {
             .httpBasic();
             // .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS);
 
-            //http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
+            http.addFilterBefore(jwtRequestFilter, UsernamePasswordAuthenticationFilter.class);
 
         return http.build();
     }
