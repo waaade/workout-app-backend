@@ -18,7 +18,7 @@ public class UserWorkout implements Serializable {
     
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer Workoutid;
+    private Integer id;
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
@@ -33,11 +33,11 @@ public class UserWorkout implements Serializable {
 
 
     public Integer getWorkoutid() {
-        return this.Workoutid;
+        return this.id;
     }
 
     public void setWorkoutid(Integer Workoutid) {
-        this.Workoutid = Workoutid;
+        this.id = Workoutid;
     }
 
     public User getUserId() {
