@@ -43,7 +43,7 @@ public class UserController {
 		
 		Optional<User> user = userRepo.findById(id);
 		if (user.isEmpty()) {
-			throw new ResourceNotFoundException("user", id);
+			return ResponseEntity.notFound().build();
 		}
 		return ResponseEntity.status(200).body(user.get());
 	}
@@ -54,11 +54,12 @@ public class UserController {
 		if (foundUser.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
 		}
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		// user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setId(null);
 		user.setRole(Role.ROLE_USER);
 		user.setEnabled(true);
 		userRepo.save(user);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return ResponseEntity.status(HttpStatus.CREATED).body("Account successfully created");
 	}
 
 	@PutMapping("/users/{id}")
@@ -72,7 +73,7 @@ public class UserController {
 		// 	return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
 		// }
 		existingUser.setUsername(user.getUsername());
-		existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		// existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepo.save(existingUser);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
