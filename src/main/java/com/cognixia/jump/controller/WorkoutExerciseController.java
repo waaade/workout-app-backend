@@ -23,9 +23,14 @@ public List<WorkoutExercise> getAllWorkoutExercises() {
 }
 
 @GetMapping("/workoutExercises/{id}")
-public WorkoutExercise getWorkoutExerciseById(@PathVariable Integer id) {
-	return workoutExerciseRepo.findById(id).orElse(null);
+public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Integer id) {
+    WorkoutExercise workoutExercise = workoutExerciseRepo.findById(id).orElse(null);
+    if (workoutExercise == null) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(workoutExercise);
 }
+
 
 @PostMapping("/workoutExercises")
 public ResponseEntity<String> addWorkoutExercise(@RequestBody WorkoutExercise workoutExercise) {
