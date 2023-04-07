@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.cognixia.jump.exception.ResourceNotFoundException;
 import com.cognixia.jump.model.User;
 import com.cognixia.jump.model.User.Role;
 import com.cognixia.jump.repository.UserRepository;
@@ -38,8 +39,13 @@ public class UserController {
 	}
 
 	@GetMapping("/users/{id}")
-	public User getUserById(@PathVariable Integer id) {
-		return userRepo.findById(id).orElse(null);
+	public ResponseEntity<User> getUserById(@PathVariable Integer id) throws ResourceNotFoundException {
+		
+		Optional<User> user = userRepo.findById(id);
+		if (user.isEmpty()) {
+			return ResponseEntity.notFound().build();
+		}
+		return ResponseEntity.status(200).body(user.get());
 	}
 
 	@PostMapping("/users")
@@ -48,11 +54,12 @@ public class UserController {
 		if (foundUser.isPresent()) {
 			return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
 		}
-		user.setPassword(passwordEncoder.encode(user.getPassword()));
+		// user.setPassword(passwordEncoder.encode(user.getPassword()));
+		user.setId(null);
 		user.setRole(Role.ROLE_USER);
 		user.setEnabled(true);
 		userRepo.save(user);
-		return ResponseEntity.status(HttpStatus.CREATED).build();
+		return ResponseEntity.status(HttpStatus.CREATED).body("Account successfully created");
 	}
 
 	@PutMapping("/users/{id}")
@@ -66,7 +73,7 @@ public class UserController {
 		// 	return ResponseEntity.status(HttpStatus.CONFLICT).body("Username already exists");
 		// }
 		existingUser.setUsername(user.getUsername());
-		existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
+		// existingUser.setPassword(passwordEncoder.encode(user.getPassword()));
 		userRepo.save(existingUser);
 		return ResponseEntity.status(HttpStatus.OK).build();
 	}
