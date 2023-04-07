@@ -24,7 +24,7 @@ import com.cognixia.jump.repository.ExerciseRepository;
 @ExtendWith(MockitoExtension.class)
 public class ExerciseControllerTest {
 
-    private MockMvc mockMvc;
+    // private MockMvc mockMvc;
 
     @Mock
     private ExerciseRepository exerciseRepo;
