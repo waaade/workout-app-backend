@@ -1,6 +1,7 @@
 package com.cognixia.jump.model;
 
 import java.io.Serializable;
+import java.util.function.IntPredicate;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,8 +24,12 @@ public class Exercise implements Serializable{
     @Column
     private String exerciseType;
 
+    public Exercise(){
 
-    public Exercise() {
+    }
+
+
+    public Exercise(int i, String string, String string2, int j, int k, int l) {
     }
 
 
@@ -51,5 +56,10 @@ public class Exercise implements Serializable{
             ", exerciseType='" + getExerciseType() + "'" +
             "}";
     }
+
+
+    public void setName(String string) {
+    }
+
     
 }

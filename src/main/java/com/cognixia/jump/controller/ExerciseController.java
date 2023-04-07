@@ -23,9 +23,14 @@ public class ExerciseController {
     }
 
     @GetMapping("/exercises/{id}")
-    public Exercise getExerciseById(@PathVariable Integer id) {
-        return exerciseRepo.findById(id).orElse(null);
+    public ResponseEntity<Exercise> getExerciseById(@PathVariable Integer id) {
+        Exercise exercise = exerciseRepo.findById(id).orElse(null);
+        if (exercise == null) {
+            return ResponseEntity.notFound().build();
+        }
+        return ResponseEntity.ok(exercise);
     }
+    
 
     @PostMapping("/exercises")
     public ResponseEntity<String> addExercise(@RequestBody Exercise exercise) {
