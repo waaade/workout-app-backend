@@ -56,10 +56,4 @@ public class Exercise implements Serializable{
             ", exerciseType='" + getExerciseType() + "'" +
             "}";
     }
-
-
-    public void setName(String string) {
-    }
-
-    
 }
