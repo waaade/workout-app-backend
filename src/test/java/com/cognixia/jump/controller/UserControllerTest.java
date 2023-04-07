@@ -33,7 +33,6 @@ import com.cognixia.jump.repository.UserRepository;
 @SpringBootTest
 public class UserControllerTest {
 
-	private static final String STARTING_URI = "http://localhost:8080/api";
     
     @Autowired
     private MockMvc mvc;
@@ -52,7 +51,6 @@ public class UserControllerTest {
 
         when(userRepo.findAll()).thenReturn(userList);
 
-        String uri = STARTING_URI + "/users";
         // mvc.perform(get("/api/users"))
         //    .andDo(print())
         //    .andExpect(status().isOk())
@@ -101,6 +99,7 @@ public class UserControllerTest {
         User createdUser = new User(1, "user1", "pw123", Role.ROLE_USER, true);
 
         when(userRepo.findByUsername(createdUser.getUsername())).thenReturn(Optional.empty());
+        when(userRepo.save(Mockito.any(User.class))).thenReturn(createdUser);
 
         ResponseEntity<String> response = userController.addUser(createdUser);
 

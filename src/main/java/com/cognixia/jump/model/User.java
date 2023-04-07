@@ -45,6 +45,10 @@ public class User implements Serializable {
         
     }
 
+    public User(Integer id) {
+        this.id = id;
+    }
+
     public User(Integer id, String username, String password, Role role, boolean enabled) {
         this.id = id;
         this.username = username;

@@ -2,6 +2,7 @@ package com.cognixia.jump.model;
 
 import java.io.Serializable;
 import java.sql.Date;
+import java.time.LocalDate;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -25,7 +26,14 @@ public class UserWorkout implements Serializable {
     private User userId;
 
     @Column
-    private Date workoutDate;
+    private LocalDate workoutDate;
+
+
+    public UserWorkout(Integer id, User userId, LocalDate workoutDate) {
+        this.id = id;
+        this.userId = userId;
+        this.workoutDate = workoutDate;
+    }
 
 
     public UserWorkout() {
@@ -48,11 +56,11 @@ public class UserWorkout implements Serializable {
         this.userId = userId;
     }
 
-    public Date getWorkoutDate() {
+    public LocalDate getWorkoutDate() {
         return this.workoutDate;
     }
 
-    public void setWorkoutDate(Date workoutDate) {
+    public void setWorkoutDate(LocalDate workoutDate) {
         this.workoutDate = workoutDate;
     }
 
