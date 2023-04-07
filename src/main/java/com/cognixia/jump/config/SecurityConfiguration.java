@@ -40,6 +40,7 @@ public class SecurityConfiguration {
             .antMatchers("/authenticate").permitAll()
             // .antMatchers("/api/admin").hasRole("ADMIN")
             .antMatchers(HttpMethod.POST, "/api/users").permitAll()
+            .antMatchers(HttpMethod.GET, "/api/users").hasAnyRole("USER", "ADMIN")
             // .antMatchers(HttpMethod.GET, "api/user/**").hasRole("ADMIN")
             .antMatchers("/api/all").permitAll()
             .anyRequest().authenticated()
