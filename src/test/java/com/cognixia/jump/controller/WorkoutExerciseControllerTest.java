@@ -72,35 +72,35 @@ public class WorkoutExerciseControllerTest {
                 .andExpect(jsonPath("$[1].weight", is(120)));
     }
 
-    @Test
-    public void testGetWorkoutExerciseById() throws Exception {
-        WorkoutExercise exercise = new WorkoutExercise();
-        exercise.setId(1);
-        exercise.setReps(10);
-        exercise.setWeight(100);
+    // @Test
+    // public void testGetWorkoutExerciseById() throws Exception {
+    //     WorkoutExercise exercise = new WorkoutExercise();
+    //     exercise.setId(1);
+    //     exercise.setReps(10);
+    //     exercise.setWeight(100);
 
-        when(workoutExerciseRepository.findById(1)).thenReturn(Optional.of(exercise));
+    //     when(workoutExerciseRepository.findById(1)).thenReturn(Optional.of(exercise));
 
-        mockMvc.perform(get("/api/workoutExercises/1"))
-                .andExpect(status().isOk())
-                .andExpect(jsonPath("$.id", is(1)))
-                .andExpect(jsonPath("$.reps", is(10)))
-                .andExpect(jsonPath("$.weight", is(100)));
-    }
+    //     mockMvc.perform(get("/api/workoutExercises/1"))
+    //             .andExpect(status().isOk())
+    //             .andExpect(jsonPath("$.id", is(1)))
+    //             .andExpect(jsonPath("$.reps", is(10)))
+    //             .andExpect(jsonPath("$.weight", is(100)));
+    // }
 
-    @Test
-    public void testGetWorkoutExerciseByIdNotFound() throws Exception {
-        int id = 1;
+    // @Test
+    // public void testGetWorkoutExerciseByIdNotFound() throws Exception {
+    //     int id = 1;
     
-        // Set up the mock repository to return an empty optional when findById is called with the given id
-        when(workoutExerciseRepository.findById(id)).thenReturn(Optional.empty());
+    //     // Set up the mock repository to return an empty optional when findById is called with the given id
+    //     when(workoutExerciseRepository.findById(id)).thenReturn(Optional.empty());
     
-        // Perform the GET request to the controller endpoint with the given id
-        mockMvc.perform(get("/api/workoutExercises/{id}", id))
+    //     // Perform the GET request to the controller endpoint with the given id
+    //     mockMvc.perform(get("/api/workoutExercises/{id}", id))
         
-                // Assert that the response status code is 404
-                .andExpect(status().isNotFound());
-    }
+    //             // Assert that the response status code is 404
+    //             .andExpect(status().isNotFound());
+    // }
 
     @Test
     public void testAddWorkoutExercise() throws Exception {

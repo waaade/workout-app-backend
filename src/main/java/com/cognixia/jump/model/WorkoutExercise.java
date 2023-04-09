@@ -21,12 +21,12 @@ public class WorkoutExercise implements Serializable{
     private Integer id;
 
     @ManyToOne
-    @JoinColumn(name = "userworkout_id", referencedColumnName = "id")
-    private UserWorkout workoutId;
+    @JoinColumn(name = "workout_id", referencedColumnName = "id")
+    private UserWorkout workout_id;
 
     @ManyToOne
     @JoinColumn(name = "exercise_id", referencedColumnName = "id")
-    private Exercise exerciseId;
+    private Exercise exercise_id;
 
     @Column
     @Min(0)
@@ -50,19 +50,19 @@ public class WorkoutExercise implements Serializable{
     }
 
     public UserWorkout getWorkoutId() {
-        return this.workoutId;
+        return this.workout_id;
     }
 
     public void setWorkoutId(UserWorkout workoutId) {
-        this.workoutId = workoutId;
+        this.workout_id = workoutId;
     }
 
     public Exercise getExerciseId() {
-        return this.exerciseId;
+        return this.exercise_id;
     }
 
     public void setExerciseId(Exercise exerciseId) {
-        this.exerciseId = exerciseId;
+        this.exercise_id = exerciseId;
     }
 
     public Integer getReps() {

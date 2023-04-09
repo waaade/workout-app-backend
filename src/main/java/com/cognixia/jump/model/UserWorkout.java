@@ -23,7 +23,7 @@ public class UserWorkout implements Serializable {
 
     @ManyToOne
     @JoinColumn(name = "user_id", referencedColumnName = "id")
-    private User userId;
+    private User user_id;
 
     @Column
     private LocalDate workoutDate;
@@ -31,7 +31,7 @@ public class UserWorkout implements Serializable {
 
     public UserWorkout(Integer id, User userId, LocalDate workoutDate) {
         this.id = id;
-        this.userId = userId;
+        this.user_id = userId;
         this.workoutDate = workoutDate;
     }
 
@@ -49,11 +49,11 @@ public class UserWorkout implements Serializable {
     }
 
     public User getUserId() {
-        return this.userId;
+        return this.user_id;
     }
 
     public void setUserId(User userId) {
-        this.userId = userId;
+        this.user_id = userId;
     }
 
     public LocalDate getWorkoutDate() {
