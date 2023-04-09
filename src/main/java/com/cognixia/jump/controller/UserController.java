@@ -48,6 +48,11 @@ public class UserController {
 		return ResponseEntity.status(200).body(user.get());
 	}
 
+	@GetMapping("/users/name/{name}")
+	public Optional<User> getUserByName(@PathVariable String name) {
+		return userRepo.findByUsername(name);
+	}
+
 	@PostMapping("/users")
 	public ResponseEntity<String> addUser(@Valid @RequestBody User user) {
 		Optional<User> foundUser = userRepo.findByUsername(user.getUsername());

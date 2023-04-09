@@ -22,19 +22,19 @@ public List<WorkoutExercise> getAllWorkoutExercises() {
 	return workoutExerciseRepo.findAll();
 }
 
-@GetMapping("/workoutExercises/{id}")
+@GetMapping("/workoutExercises/id/{id}")
 public List<WorkoutExercise> getWorkoutExercisesByUser(@PathVariable Integer id) {
 	return workoutExerciseRepo.allWorkoutExercisesByUser(id);
 }
 
-// @GetMapping("/workoutExercises/{id}")
-// public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Integer id) {
-//     WorkoutExercise workoutExercise = workoutExerciseRepo.findById(id).orElse(null);
-//     if (workoutExercise == null) {
-//         return ResponseEntity.notFound().build();
-//     }
-//     return ResponseEntity.ok(workoutExercise);
-// }
+@GetMapping("/workoutExercises/{id}")
+public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Integer id) {
+    WorkoutExercise workoutExercise = workoutExerciseRepo.findById(id).orElse(null);
+    if (workoutExercise == null) {
+        return ResponseEntity.notFound().build();
+    }
+    return ResponseEntity.ok(workoutExercise);
+}
 
 
 @PostMapping("/workoutExercises")
