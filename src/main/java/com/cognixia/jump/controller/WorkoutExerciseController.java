@@ -24,19 +24,20 @@ public List<WorkoutExercise> getAllWorkoutExercises() {
 	return workoutExerciseRepo.findAll();
 }
 
+@GetMapping("/workoutExercises/{id}")
+public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Integer id) {
+	WorkoutExercise workoutExercise = workoutExerciseRepo.findById(id).orElse(null);
+	if (workoutExercise == null) {
+		return ResponseEntity.notFound().build();
+	}
+	return ResponseEntity.ok(workoutExercise);
+}
+
 @GetMapping("/workoutExercises/id/{id}")
 public List<WorkoutExercise> getWorkoutExercisesByUser(@PathVariable Integer id) {
 	return workoutExerciseRepo.allWorkoutExercisesByUser(id);
 }
 
-@GetMapping("/workoutExercises/{id}")
-public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Integer id) {
-    WorkoutExercise workoutExercise = workoutExerciseRepo.findById(id).orElse(null);
-    if (workoutExercise == null) {
-        return ResponseEntity.notFound().build();
-    }
-    return ResponseEntity.ok(workoutExercise);
-}
 
 
 @PostMapping("/workoutExercises")
@@ -57,6 +58,7 @@ public ResponseEntity<String> updateWorkoutExercise(@PathVariable Integer id,
 	return ResponseEntity.status(HttpStatus.OK).build();
 }
 
+@CrossOrigin(origins = "http://jump-jan-java-23-fe-gavin.s3-website-us-east-1.amazonaws.com")
 @DeleteMapping("/workoutExercises/{id}")
 public ResponseEntity<String> deleteWorkoutExercise(@PathVariable Integer id) {
 	WorkoutExercise existingWorkoutExercise = workoutExerciseRepo.findById(id).orElse(null);
