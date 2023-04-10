@@ -33,6 +33,7 @@ public class WorkoutExercise implements Serializable{
     private Integer reps;
 
     @Column
+    @Min(0)
     private Integer weight;
 
 

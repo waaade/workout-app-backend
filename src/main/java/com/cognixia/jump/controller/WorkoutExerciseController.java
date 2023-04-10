@@ -2,6 +2,8 @@ package com.cognixia.jump.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -38,7 +40,7 @@ public ResponseEntity<WorkoutExercise> getWorkoutExerciseById(@PathVariable Inte
 
 
 @PostMapping("/workoutExercises")
-public ResponseEntity<String> addWorkoutExercise(@RequestBody WorkoutExercise workoutExercise) {
+public ResponseEntity<String> addWorkoutExercise(@Valid @RequestBody WorkoutExercise workoutExercise) {
 	workoutExerciseRepo.save(workoutExercise);
 	return ResponseEntity.status(HttpStatus.CREATED).build();
 }

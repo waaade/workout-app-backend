@@ -49,7 +49,7 @@ public class UserController {
 	}
 
 	@GetMapping("/users/name/{name}")
-	public Optional<User> getUserByName(@PathVariable String name) {
+	public Optional<User> getUserByName(@PathVariable String name) throws ResourceNotFoundException {
 		return userRepo.findByUsername(name);
 	}
 
